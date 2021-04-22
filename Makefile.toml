@@ -1,0 +1,22 @@
+[tasks.strip]
+args = ["target/x86_64-unknown-linux-gnu/release/sus"]
+command = "strip"
+
+[tasks.std]
+args = ["build", "--release", "--target", "x86_64-unknown-linux-gnu"]
+command = "xargo"
+
+[tasks.runonly]
+command = "target/x86_64-unknown-linux-gnu/release/sus"
+
+[tasks.build]
+dependencies = [
+  "std",
+  "strip",
+]
+
+[tasks.run]
+dependencies = [
+  "build",
+  "runonly",
+]
